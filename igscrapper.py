@@ -48,6 +48,24 @@ class InstagramBot:
         )
         notifoffbutton.click()
 
+    def unfollow_user(self):
+        #Function to unfollow user.
+
+        driver = self.browser
+        username = input('Enter username to unfollow: ')
+        driver.get(self.url + username)
+        unfollow_button = driver.find_element_by_xpath(
+            '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[1]/span/span[1]/button'
+        )
+        unfollow_button.click()
+        sleep(1)
+        confirm_button = driver.find_element_by_xpath(
+            '/html/body/div[3]/div/div/div[3]/button[1]'
+        )
+        confirm_button.click()
+        sleep(2)
+
+
 
     def follow_user(self):
         #Function to follow user on instagram.
@@ -59,6 +77,7 @@ class InstagramBot:
             '//*[@id="react-root"]/section/main/div/header/section/div[1]/div[1]/span/span[1]/button'
         )
         follow_button.click() 
+        sleep(2)
 
 
     def like_tag_photos(self):
@@ -96,6 +115,5 @@ class InstagramBot:
 igbot = InstagramBot()
 igbot.get_login_page()
 igbot.login_me()
-igbot.follow_user()
-sleep(3)
+igbot.unfollow_user()
 igbot.close_browser()
